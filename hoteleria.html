@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <title>HOTELERÍA</title>
+</head>
+
+<body>
+  <!-- MENÚ -->
+  <header class="fixed w-full bg-black z-30">
+    <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
+      <div class="w-[130px]  flex gap-4">
+        <div class="text-white flex items-center">
+          <span id="language-label" class="mr-2">ENGL</span>
+          <label for="toggle" class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle" class="sr-only" onchange="toggleLanguage()">
+            <div class="w-10 h-6 bg-white rounded-full p-1 relative">
+              <div class="dot w-4 h-4 bg-black rounded-full shadow-md transform transition-transform duration-300">
+              </div>
+            </div>
+          </label>
+        </div>
+        <style>
+          input:checked+label .dot {
+            transform: translateX(100%);
+          }
+        </style>
+        <script>
+          function toggleLanguage() {
+            const checkbox = document.getElementById('toggle');
+            const label = document.getElementById('language-label');
+            if (checkbox.checked) {
+              label.textContent = 'ESP';
+            } else {
+              label.textContent = 'ENGL';
+            }
+          }
+        </script>
+      </div>
+      <a href="index.html" class="w-[130px] flex justify-center">
+        <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
+      </a>
+      <div id="AbrirMenuMovil" class="w-[130px] flex justify-end ">
+        <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
+      </div>
+    </nav>
+  </header>
+
+  <div id="contenedorMenuMovil"
+    class="fixed flex-col py-10 w-[85%] max-w-[500px] h-screen z-50 bg-white top-[74px] transition-right flex duration-300 right-[-100%]">
+    <img id="CerrarMenuMovil" class="w-5 absolute top-4 right-4 cursor-pointer" src="assets/img/icon-x.svg"
+      alt="Cerrar">
+    <a href="index.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">NOSOTROS</p>
+    </a>
+    <a href="#" id="AbrirSubMenu" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">PROYECTOS</p>
+      <img class="mr-5" src="assets/img/arrow-menu.svg" alt="">
+    </a>
+    <div  id="ContenedorSubmenu" class="mx-6 hidden">
+      <a href="hoteleria.html" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">HOTELERÍA</p>
+      </a>
+      <a href="residencial.html" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">RESIDENCIAL</p>
+      </a>
+      <a href="estructural.html" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">ESTRUCTURAL</p>
+      </a>
+      <a href="glamping.html" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">GLAMPING</p>
+      </a>
+
+    </div>
+    <a href="reforestacion.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">REFORESTACIÓN</p>
+    </a>
+    <a href="cotiza.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">COTIZA</p>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
+      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+      contenedorMenuMovil.classList.add('right-0');
+      contenedorMenuMovil.classList.remove('right-[-100%]');
+    });
+
+    document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
+      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+      contenedorMenuMovil.classList.remove('right-0');
+      contenedorMenuMovil.classList.add('right-[-100%]');
+    });
+
+
+   
+
+    let hola = 1;
+
+document.getElementById('AbrirSubMenu').addEventListener('click', function () {
+    if (hola === 1) {
+        var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+        contenedorMenuMovil.classList.add('block');
+        contenedorMenuMovil.classList.remove('hidden');
+        hola = 0;
+    } else if (hola === 0) {
+        var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+        contenedorMenuMovil.classList.remove('block');
+        contenedorMenuMovil.classList.add('hidden');
+        hola = 1;
+    }
+});
+
+    
+  </script>
+
+  <main>
+    <!-- BANNER PRINCIPAL -->
+    <section class="w-full flex justify-center items-center">
+      <div class="absolute w-full flex justify-center items-center text-white text-center flex-col gap-4">
+        <h2 class="text-3xl tracking-widest">HOTELERÍA</h2>
+      </div>
+      <img class="w-full h-[95vh] object-cover md:hidden" src="assets/img/portada-hoteleria-mov.png" alt="Banner móvil">
+      <img class="w-full hidden md:block object-cover" src="assets/img/portada-hoteleria-desk.png" alt="Banner escritorio">
+    </section>
+
+ 
+
+
+   
+    <section class="w-full px-5  md:px-0   my-16 md:my-32 mx-auto container">
+      <h2 class="text-3xl tracking-widest text-center mb-10">NUESTROS PROYECTOS</h2>
+      <p class="text-center">LOREM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING ELIT, SED DIAM NONUMMY NIBH EUISMOD TINCIDUNT UT LAOREET DOLORE MAGNA ALIQUAM ERAT VOLUTPAT. UT WISI ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCI TATION.</p>
+
+      <div class="mx-auto container my-12">
+
+        <div class="mt-7 border-black border gallery-toggle">
+          <div class="flex justify-between px-5 py-3 items-center">
+            <p>INTERCONTINENTAL POLANCO</p>
+            <img src="assets/img/arrow-b.svg" alt="">
+            <img class="hidden" src="assets/img/arrow-m.svg" alt="">
+          </div>
+          <p class="hidden px-5 py-3 p text-center">EN LA MARINA DE LA PAZ ESTE PROYECTO FUE DISEÑADO POR AIKANA CASA CON MADERAS RESISTENTES A LA INTEMPERIE, CLIMA EXTREMO Y SALITRE. SE USARON MATERIALES NATURALES Y MADERAS TROPICALES PARA ASEGURAR LA ADAPTABILIDAD Y DURABILIDAD DEL PROYECTO.</p>
+        </div>
+    
+        <div class="mt-7 border-black border gallery-toggle">
+          <div class="flex justify-between px-5 py-3 items-center">
+            <p>INTERCONTINENTAL COZUMEL</p>
+            <img src="assets/img/arrow-b.svg" alt="">
+            <img class="hidden" src="assets/img/arrow-m.svg" alt="">
+          </div>
+          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+        </div>
+
+
+        <div class="mt-7 border-black border gallery-toggle">
+          <div class="flex justify-between px-5 py-3 items-center">
+            <p>HOLIDAY INN IXTAPAL</p>
+            <img src="assets/img/arrow-b.svg" alt="">
+            <img class="hidden" src="assets/img/arrow-m.svg" alt="">
+          </div>
+          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+        </div>
+
+        <div class="mt-7 border-black border gallery-toggle">
+          <div class="flex justify-between px-5 py-3 items-center">
+            <p>FIESTA AMERICANA ACAPULCO</p>
+            <img src="assets/img/arrow-b.svg" alt="">
+            <img class="hidden" src="assets/img/arrow-m.svg" alt="">
+          </div>
+          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+        </div>
+    
+      </div>
+    
+      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco1.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco2.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco3.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco4.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco5.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco6.png" alt="">
+      </div>
+    
+      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/cozumel1.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/cozumel2.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/cozumel3.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/cozumel4.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/cozumel5.png" alt="">
+      </div>
+      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/ixtapa1.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/ixtapa2.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/ixtapa3.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/ixtapa4.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/ixtapa5.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/ixtapa6.png" alt="">
+      </div>
+      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco1.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco2.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco3.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco4.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco5.png" alt="">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco6.png" alt="">
+      </div>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const toggles = document.querySelectorAll('.gallery-toggle');
+          const galleries = document.querySelectorAll('.gallery-content');
+      
+          toggles.forEach((toggle, index) => {
+            const flexElem = toggle.querySelector('.flex');
+            const textElem = toggle.querySelector('.p');
+            const arrowB = flexElem.querySelector('img[src="assets/img/arrow-b.svg"]');
+            const arrowM = flexElem.querySelector('img[src="assets/img/arrow-m.svg"]');
+      
+            flexElem.addEventListener('click', function() {
+              toggles.forEach(t => {
+                const flex = t.querySelector('.flex');
+                if (flex) {
+                  flex.classList.remove('bg-black', 'text-white');
+                  const arrowB = flex.querySelector('img[src="assets/img/arrow-b.svg"]');
+                  const arrowM = flex.querySelector('img[src="assets/img/arrow-m.svg"]');
+                  if (arrowB) arrowB.classList.remove('hidden');
+                  if (arrowM) arrowM.classList.add('hidden');
+                }
+                const text = t.querySelector('.p');
+                if (text) text.classList.add('hidden');
+              });
+      
+              galleries.forEach(gallery => {
+                gallery.classList.add('hidden');
+                gallery.classList.remove('grid');
+              });
+      
+              if (flexElem) {
+                flexElem.classList.toggle('bg-black');
+                flexElem.classList.toggle('text-white');
+                if (arrowB) arrowB.classList.toggle('hidden');
+                if (arrowM) arrowM.classList.toggle('hidden');
+                if (textElem) textElem.classList.toggle('hidden');
+              }
+      
+              const gallery = galleries[index];
+              if (gallery) {
+                gallery.classList.toggle('hidden');
+                if (!gallery.classList.contains('hidden')) {
+                  gallery.classList.add('grid');
+                } else {
+                  gallery.classList.remove('grid');
+                }
+              }
+            });
+          });
+        });
+      </script>
+      
+
+    </section>
+   
+  </main>
+
+ 
+
+  <footer class="bg-black text-white px-5 py-10">
+    <div class="container mx-auto">
+      <h2 class="">CONTACTO</h2>
+      <div class="flex gap-1 flex-col mt-3">
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p>Ciudad de México: 55 4360 9202</p>
+        </a>
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p>Los Cabos: 55 8014 1086</p>
+        </a>
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p>Puerto Escondido: 55 5404 7705</p>
+        </a>
+        <a class="mt-5" href="#">POLÍTICAS DE PRIVACIDAD</a>
+      </div>
+      <div class="pt-10 flex justify-between items-end">
+        <div class="flex gap-3">
+          <a href="#"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
+          <a href="#"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
+          <a href="#"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
+        </div>
+        <img class="h-8" src="assets/img/loco.PNG" alt="Logo">
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".slidemin", {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".sliderGal", {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      thumbs: {
+        swiper: swiper,
+      },
+    });
+  </script>
+</body>
+
+</html>

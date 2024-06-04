@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <title>TOKALI</title>
+</head>
+
+<body>
+  <!-- MENÚ -->
+  <header class="fixed w-full bg-black z-30">
+    <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
+      <div class="w-[130px]  flex gap-4">
+        <div class="text-white flex items-center">
+          <span id="language-label" class="mr-2">ENGL</span>
+          <label for="toggle" class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle" class="sr-only" onchange="toggleLanguage()">
+            <div class="w-10 h-6 bg-white rounded-full p-1 relative">
+              <div class="dot w-4 h-4 bg-black rounded-full shadow-md transform transition-transform duration-300">
+              </div>
+            </div>
+          </label>
+        </div>
+        <style>
+          input:checked+label .dot {
+            transform: translateX(100%);
+          }
+        </style>
+        <script>
+          function toggleLanguage() {
+            const checkbox = document.getElementById('toggle');
+            const label = document.getElementById('language-label');
+            if (checkbox.checked) {
+              label.textContent = 'ESP';
+            } else {
+              label.textContent = 'ENGL';
+            }
+          }
+        </script>
+      </div>
+      <a href="index.html" class="w-[130px] flex justify-center">
+        <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
+      </a>
+      <div id="AbrirMenuMovil" class="w-[130px] flex justify-end ">
+        <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
+      </div>
+    </nav>
+  </header>
+
+  <div id="contenedorMenuMovil"
+    class="fixed flex-col py-10 w-[85%] max-w-[500px] h-screen z-50 bg-white top-[74px] transition-right flex duration-300 right-[-100%]">
+    <img id="CerrarMenuMovil" class="w-5 absolute top-4 right-4 cursor-pointer" src="assets/img/icon-x.svg"
+      alt="Cerrar">
+    <a href="index.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">NOSOTROS</p>
+    </a>
+    <a href="#" id="AbrirSubMenu" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">PROYECTOS</p>
+      <img class="mr-5" src="assets/img/arrow-menu.svg" alt="">
+    </a>
+    <div  id="ContenedorSubmenu" class="mx-6 hidden">
+      <a href="hoteleria.html" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">HOTELERÍA</p>
+      </a>
+      <a href="#" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">RESIDENCIAL</p>
+      </a>
+      <a href="#" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">ESTRUCTURAL</p>
+      </a>
+      <a href="#" class="py-5 flex items-center justify-between">
+        <p class="text-md font-bold ml-10 tracking-wide">GLAMPING</p>
+      </a>
+
+    </div>
+    <a href="reforestacion.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">REFORESTACIÓN</p>
+    </a>
+    <a href="cotiza.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">COTIZA</p>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
+      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+      contenedorMenuMovil.classList.add('right-0');
+      contenedorMenuMovil.classList.remove('right-[-100%]');
+    });
+
+    document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
+      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+      contenedorMenuMovil.classList.remove('right-0');
+      contenedorMenuMovil.classList.add('right-[-100%]');
+    });
+
+
+   
+
+    let hola = 1;
+
+document.getElementById('AbrirSubMenu').addEventListener('click', function () {
+    if (hola === 1) {
+        var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+        contenedorMenuMovil.classList.add('block');
+        contenedorMenuMovil.classList.remove('hidden');
+        hola = 0;
+    } else if (hola === 0) {
+        var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+        contenedorMenuMovil.classList.remove('block');
+        contenedorMenuMovil.classList.add('hidden');
+        hola = 1;
+    }
+});
+
+    
+  </script>
+
+  <main>
+    <!-- BANNER PRINCIPAL -->
+    <section class="w-full flex justify-center items-center">
+      <div class="absolute w-full flex justify-center items-center text-white text-center flex-col gap-4">
+        <h2 class="text-3xl tracking-widest">REFORESTACIÓN</h2>
+      </div>
+      <img class="w-full h-[95vh] object-cover md:hidden" src="assets/img/portada-reforestacion.png" alt="Banner móvil">
+      <img class="w-full hidden md:block object-cover" src="assets/img/portada-reforestacion.png" alt="Banner escritorio">
+    </section>
+
+ 
+
+
+   
+    <section class="w-full px-5  md:px-0   my-16 md:my-32 mx-auto container">
+      <h2 class="text-3xl tracking-widest text-center mb-10">NUESTRO COMPROMISO</h2>
+      <p class="text-center"> TENEMOS UN COMPROMISO CON EL MEDIO AMBIENTE. NOS IMPORTA DEVOLVER LO QUE LA TIERRA NOS REGALA. ANUALMENTE ORGANIZAMOS UNA REFORESTACIÓN DE GRAN MAGNITUD EN EL ESTADO DE MÉXICO DE LA MANO CON  KUA-CHILIA.</p>
+
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper sliderGal">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+          </div>
+       
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <div thumbsSlider="" class="swiper slidemin">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+          </div>
+        </div>
+      </div>
+
+    </section>
+   
+  </main>
+
+  <footer class="bg-black text-white px-5 py-10">
+    <div class="container mx-auto">
+      <h2 class="">CONTACTO</h2>
+      <div class="flex gap-1 flex-col mt-3">
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p>Ciudad de México: 55 4360 9202</p>
+        </a>
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p>Los Cabos: 55 8014 1086</p>
+        </a>
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p>Puerto Escondido: 55 5404 7705</p>
+        </a>
+        <a class="mt-5" href="#">POLÍTICAS DE PRIVACIDAD</a>
+      </div>
+      <div class="pt-10 flex justify-between items-end">
+        <div class="flex gap-3">
+          <a href="#"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
+          <a href="#"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
+          <a href="#"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
+        </div>
+        <img class="h-8" src="assets/img/loco.PNG" alt="Logo">
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".slidemin", {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".sliderGal", {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      thumbs: {
+        swiper: swiper,
+      },
+    });
+  </script>
+</body>
+
+</html>

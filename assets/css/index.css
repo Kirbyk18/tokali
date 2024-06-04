@@ -1,0 +1,73 @@
+@font-face {
+    font-family: Avenir Next;
+    src: url(../tipografias/Avenir\ Next\ LT\ Pro\ Regular/Avenir.otf);
+  }
+  
+  *{
+    font-family: Avenir Next;
+  }
+
+
+  
+/* Comercial Partners */
+:root {
+    --size: clamp(10rem, 1rem + 40vmin, 30rem);
+    --gap: calc(var(--size) / 5);
+    --duration: 15s;
+    --scroll-start: 0;
+    --scroll-end: calc(-100% - var(--gap));
+  }
+  
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    position: relative;
+  }
+  
+  
+  .marquee__group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scroll-x var(--duration) linear infinite;
+  }
+
+  
+  
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__group {
+      animation-play-state: paused;
+    }
+  }
+  
+  @keyframes scroll-x {
+    from {
+      transform: translateX(var(--scroll-start));
+    }
+    to {
+      transform: translateX(var(--scroll-end));
+    }
+  }
+  
+  @keyframes scroll-x2 {
+      from {
+          transform: translateX(var(--scroll-end));
+      }
+      to {
+          transform: translateX(var(--scroll-start));
+      }
+    }
+  
+  @keyframes fade {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+

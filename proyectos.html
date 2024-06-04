@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <title>TOKALI</title>
+</head>
+
+<body>
+  <!-- MENÚ -->
+  <header class="fixed w-full bg-black z-30">
+    <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
+      <div class="w-[130px] md:w-auto flex gap-4">
+        <div class="text-white flex items-center">
+          <span id="language-label" class="mr-2">ENGL</span>
+          <label for="toggle" class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle" class="sr-only" onchange="toggleLanguage()">
+            <div class="w-10 h-6 bg-white rounded-full p-1 relative">
+              <div class="dot w-4 h-4 bg-black rounded-full shadow-md transform transition-transform duration-300"></div>
+            </div>
+          </label>
+        </div>
+        <style>
+          input:checked+label .dot {
+            transform: translateX(100%);
+          }
+        </style>
+        <script>
+          function toggleLanguage() {
+            const checkbox = document.getElementById('toggle');
+            const label = document.getElementById('language-label');
+            if (checkbox.checked) {
+              label.textContent = 'ESP';
+            } else {
+              label.textContent = 'ENGL';
+            }
+          }
+        </script>
+      </div>
+      <div class="w-[130px] flex justify-center">
+        <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
+      </div>
+      <div id="AbrirMenuMovil" class="w-[130px] flex justify-end md:w-auto">
+        <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
+      </div>
+    </nav>
+  </header>
+
+  <div id="contenedorMenuMovil"
+    class="fixed flex-col py-10 w-[85%] max-w-[500px] h-screen z-50 bg-white top-[74px] transition-right flex duration-300 right-[-100%]">
+    <img id="CerrarMenuMovil" class="w-5 absolute top-4 right-4 cursor-pointer" src="assets/img/icon-x.svg" alt="Cerrar">
+    <a href="index.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">INICIO</p>
+    </a>
+    <a href="proyectos.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">PROYECTOS</p>
+      <img src="" alt="">
+    </a>
+    <a href="reforestacion.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">REFORESTACIÓN</p>
+    </a>
+    <a href="cotiza.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide">COTIZA</p>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
+      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+      contenedorMenuMovil.classList.add('right-0');
+      contenedorMenuMovil.classList.remove('right-[-100%]');
+    });
+
+    document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
+      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+      contenedorMenuMovil.classList.remove('right-0');
+      contenedorMenuMovil.classList.add('right-[-100%]');
+    });
+  </script>
+
+  <main>
+    <!-- BANNER PRINCIPAL -->
+    <section class="w-full flex justify-center items-center">
+        <div class="absolute w-full flex justify-center items-center text-white text-center flex-col gap-4">
+          <img class="w-[260px]" src="" alt="">
+          <h2 class="text-3xl md:text-4xl tracking-widest text-center mb-4 font-semibold">
+HOTELERÍA          </h2>
+        </div>
+        <img class="w-full md:hidden" src="assets/img/portada-hoteleria.png" alt="Banner móvil">
+        <img class="w-full hidden md:block" src="assets/img/portada-hoteleria.png" alt="Banner escritorio">
+      </section>
+
+      <section class="w-full my-16">
+        <h2 class="text-3xl md:text-4xl tracking-widest text-center mb-4 font-semibold">
+          NUESTROS PROYECTOS
+        </h2>
+        <p class="text-center text-base md:text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+          Nuestros proyectos son bastante bonitos. Nos especializamos en una variedad de proyectos, 
+          incluyendo desarrollos hoteleros de lujo, complejos turísticos y otros proyectos a gran escala. 
+          Nos esforzamos por crear espacios que no solo sean funcionales, sino que también inspiren y 
+          deleiten a quienes los visitan.
+        </p>
+      </section>
+      
+      <section class="w-full my-16">
+        <div class="container mx-auto px-4">
+          <div class="bg-black text-white p-4 flex justify-between items-center cursor-pointer" onclick="toggleContent('polanco')">
+            <h2>INTERCONTINENTAL POLANCO</h2>
+            <span>&#9654;</span>
+          </div>
+          <div id="polanco" class="content bg-white p-4 border-t border-gray-300">
+            <p>
+              En la Marina de La Paz este proyecto fue diseñado por Aikana Casa con maderas resistentes a la intemperie, clima extremo y salitre. 
+              Se usaron materiales naturales y maderas tropicales para asegurar la adaptabilidad y durabilidad del proyecto.
+            </p>
+          </div>
+    
+          <div class="border p-4 flex justify-between items-center cursor-pointer mt-4" onclick="toggleContent('cozumel')">
+            <h2>INTERCONTINENTAL COZUMEL</h2>
+            <span>&#9654;</span>
+          </div>
+          <div id="cozumel" class="content bg-white p-4 border-t border-gray-300">
+            <p>
+            </p>
+          </div>
+    
+          <div class="border p-4 flex justify-between items-center cursor-pointer mt-4" onclick="toggleContent('ixtapa')">
+            <h2>HOLIDAY INN IXTAPA</h2>
+            <span>&#9654;</span>
+          </div>
+          <div id="ixtapa" class="content bg-white p-4 border-t border-gray-300">
+            <p>
+            </p>
+          </div>
+    
+          <div class="border p-4 flex justify-between items-center cursor-pointer mt-4" onclick="toggleContent('acapulco')">
+            <h2>FIESTA AMERICANA ACAPULCO</h2>
+            <span>&#9654;</span>
+          </div>
+          <div id="acapulco" class="content bg-white p-4 border-t border-gray-300">
+            <p>
+            </p>
+          </div>
+        </div>
+      </section>
+    
+      <script>
+        function toggleContent(id) {
+          const content = document.getElementById(id);
+          content.classList.toggle('active');
+        }
+      </script>
+    <section class="w-full my-16">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex flex-col space-y-4">
+              <img src="assets/img/1.png" alt="Imagen 1" class="w-full h-auto">
+              <img src="assets/img/3.png" alt="Imagen 2" class="w-full h-auto">
+              <img src="assets/img/5.png" alt="Imagen 3" class="w-full h-auto">
+            </div>
+            <div class="flex flex-col space-y-4">
+              <img src="assets/img/2.png" alt="Imagen 4" class="w-full h-auto">
+              <img src="assets/img/4.png" alt="Imagen 5" class="w-full h-auto">
+              <img src="assets/img/6.png" alt="Imagen 6" class="w-full h-auto">
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="bg-black text-white px-5 py-10">
+    <h2 class="">CONTACTO</h2>
+    <div class="flex gap-1 flex-col mt-3">
+      <a class="flex gap-2">
+        <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+        <p>Ciudad de Mexico: 55 4360 9202</p>
+      </a>
+      <a class="flex gap-2">
+        <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+        <p>Los Cabos: 55 8014 1086</p>
+      </a>
+      <a class="flex gap-2">
+        <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+        <p>Puerto Escondido: 55 5404 7705</p>
+      </a>
+      <a class="mt-5" href="#">POLITICAS DE PRIVACIDAD</a>
+    </div>
+    <div class="pt-10 flex justify-between items-end">
+      <div class="flex gap-3">
+        <a href="#"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
+        <a href="#"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
+        <a href="#"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
+      </div>
+      <img class="h-8" src="assets/img/loco.PNG" alt="Logo">
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".SliderIconos", {
+      slidesPerView: 3,
+      spaceBetween: 10,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
