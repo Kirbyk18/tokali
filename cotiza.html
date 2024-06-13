@@ -7,224 +7,313 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <title>HOTELERÍA</title>
+  <title>TOKALI</title>
 </head>
 
 <body>
-  <!-- MENÚ -->
-  <header class="fixed w-full bg-black z-30">
-    <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
-      <div class="w-[130px]  flex gap-4">
-        <div class="text-white flex items-center">
-          <span id="language-label" class="mr-2">ENGL</span>
-          <label for="toggle" class="inline-flex items-center cursor-pointer">
-            <input type="checkbox" id="toggle" class="sr-only" onchange="toggleLanguage()">
-            <div class="w-10 h-6 bg-white rounded-full p-1 relative">
-              <div class="dot w-4 h-4 bg-black rounded-full shadow-md transform transition-transform duration-300">
-              </div>
-            </div>
-          </label>
-        </div>
-        <style>
-          input:checked+label .dot {
-            transform: translateX(100%);
-          }
-        </style>
-        <script>
-          function toggleLanguage() {
-            const checkbox = document.getElementById('toggle');
-            const label = document.getElementById('language-label');
-            if (checkbox.checked) {
-              label.textContent = 'ESP';
-            } else {
-              label.textContent = 'ENGL';
-            }
-          }
-        </script>
+ <!-- MENÚ -->
+ <header class="fixed w-full bg-black z-30">
+  <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
+    <div class="w-[130px] flex gap-4">
+      <div class="text-white flex items-center">
+        <span id="language-label" class="mr-2">ENGL</span>
+        <label for="toggle" class="inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggle" class="sr-only" aria-label="Toggle language" onchange="toggleLanguage()">
+          <div class="w-10 h-6 bg-white rounded-full p-1 relative">
+            <div id="bolita" class="dot w-4 h-4 bg-black rounded-full shadow-md transition-transform duration-300"></div>
+          </div>
+        </label>
       </div>
-      <a href="index.html" class="w-[130px] flex justify-center">
-        <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
-      </a>
-      <div id="AbrirMenuMovil" class="w-[130px] flex justify-end ">
-        <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
-      </div>
-    </nav>
-  </header>
+      <script>
+        function cambiarIdioma(idioma) {
+          const elementosIngles = document.querySelectorAll('.ingles');
+          const elementosEspa = document.querySelectorAll('.espanol');
+      
+          if (idioma === 'en') {
+            elementosIngles.forEach(elemento => {
+              elemento.classList.remove('hidden');
+            });
+            elementosEspa.forEach(elemento => {
+              elemento.classList.add('hidden');
+            });
+          } else if (idioma === 'es') {
+            elementosEspa.forEach(elemento => {
+              elemento.classList.remove('hidden');
+            });
+            elementosIngles.forEach(elemento => {
+              elemento.classList.add('hidden');
+            });
+          }
+      
+          localStorage.setItem('idioma', idioma);
+        }
+      
+        const idiomaGuardado = localStorage.getItem('idioma') || 'es';
+        cambiarIdioma(idiomaGuardado);
+      
+        function toggleLanguage() {
+          const checkbox = document.getElementById('toggle');
+          const label = document.getElementById('language-label');
+          const dot = document.getElementById('bolita');
+          const idioma = checkbox.checked ? 'en' : 'es';
+          cambiarIdioma(idioma);
+          label.textContent = checkbox.checked ? 'ENGL' : 'ESP';
+          dot.style.transform = checkbox.checked ? 'translateX(15px)' : 'translateX(0px)';
+        }
+      </script>
+      
+    </div>
+    <a href="index.html" class="w-[130px] flex justify-center">
+      <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
+    </a>
+    <div id="AbrirMenuMovil" class="w-[130px] flex justify-end ">
+      <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
+    </div>
+  </nav>
+</header>
 
-  <div id="contenedorMenuMovil"
+<div id="contenedorMenuMovil"
   class="fixed flex-col py-10 w-[85%] max-w-[500px] h-screen z-50 bg-white top-[74px] transition-right flex duration-300 right-[-100%]">
   <img id="CerrarMenuMovil" class="w-5 absolute top-4 right-4 cursor-pointer" src="assets/img/icon-x.svg"
     alt="Cerrar">
   <a href="index.html" class="py-5 flex items-center justify-between">
-    <p class="text-md font-bold ml-10 tracking-wide">NOSOTROS</p>
+    <p class="text-md font-bold ml-10 tracking-wide espanol">NOSOTROS</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">ABOUT US</p>
+
   </a>
   <a href="#" id="AbrirSubMenu" class="py-5 flex items-center justify-between">
-    <p class="text-md font-bold ml-10 tracking-wide">PROYECTOS</p>
+    <p class="text-md font-bold ml-10 tracking-wide espanol">PROYECTOS</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">PROYECT</p>
+
     <img class="mr-5" src="assets/img/arrow-menu.svg" alt="">
   </a>
   <div  id="ContenedorSubmenu" class="mx-6 hidden">
     <a href="hoteleria.html" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">HOTELERÍA</p>
+      <p class="text-md font-bold ml-10 tracking-wide espanol">HOTELERÍA</p>
+      <p class="text-md font-bold ml-10 tracking-wide ingles hidden">HOSPITALITY</p>
+
+    </a>
+    <a href="residencial.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide espanol">RESIDENCIAL</p>
+      <p class="text-md font-bold ml-10 tracking-wide ingles hidden">RESIDENCTIAL</p>
+
     </a>
     <a href="#" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">RESIDENCIAL</p>
+      <p class="text-md font-bold ml-10 tracking-wide espanol">ESTRUCTURAL</p>
+      <p class="text-md font-bold ml-10 tracking- ingles hidden">STRUCTURAL</p>
+
     </a>
-    <a href="#" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">ESTRUCTURAL</p>
+    <a href="https://www.peregrinoglamp.mx/" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide espanol">GLAMPING</p>
+      <p class="text-md font-bold ml-10 tracking-wide ingles hidden">GLAMPING</p>
+
     </a>
-    <a href="#" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">GLAMPING</p>
-    </a>
+
   </div>
   <a href="reforestacion.html" class="py-5 flex items-center justify-between">
-    <p class="text-md font-bold ml-10 tracking-wide">REFORESTACIÓN</p>
+    <p class="text-md font-bold ml-10 tracking-wide espanol">REFORESTACIÓN</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">REFOTESTATION</p>
+
   </a>
   <a href="cotiza.html" class="py-5 flex items-center justify-between">
-    <p class="text-md font-bold ml-10 tracking-wide">COTIZA</p>
+    <p class="text-md font-bold ml-10 tracking-wide espanol">COTIZA</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">QUOTE NOW</p>
+
   </a>
 </div>
 
-  <script>
-    document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
-      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
-      contenedorMenuMovil.classList.add('right-0');
-      contenedorMenuMovil.classList.remove('right-[-100%]');
-    });
+<script>
+  document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
+    var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+    contenedorMenuMovil.classList.add('right-0');
+    contenedorMenuMovil.classList.remove('right-[-100%]');
+  });
 
-    document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
-      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
-      contenedorMenuMovil.classList.remove('right-0');
-      contenedorMenuMovil.classList.add('right-[-100%]');
-    });
-  </script>
+  document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
+    var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+    contenedorMenuMovil.classList.remove('right-0');
+    contenedorMenuMovil.classList.add('right-[-100%]');
+  });
+
+
+ 
+
+  let hola = 1;
+
+document.getElementById('AbrirSubMenu').addEventListener('click', function () {
+  if (hola === 1) {
+      var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+      contenedorMenuMovil.classList.add('block');
+      contenedorMenuMovil.classList.remove('hidden');
+      hola = 0;
+  } else if (hola === 0) {
+      var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+      contenedorMenuMovil.classList.remove('block');
+      contenedorMenuMovil.classList.add('hidden');
+      hola = 1;
+  }
+});
+
+  
+</script>
 
   <main>
-    
-    <section>
-        <div class="w-full flex justify-center items-center relative">
-          <div class="absolute w-full flex justify-center items-center text-white text-center">
-            <h2 class="text-3xl tracking-widest font-light">COTIZA TU <br> PROYECTO A GRAN ESCALA</h2>
-          </div>
-          <img class="w-full md:hidden" src="assets/img/portada-cotiza.png" alt="Cotiza tu proyecto">
-          <img class="w-full hidden md:block h-screen" src="assets/img/banner-desk.png" alt="Banner cotiza">
-        </div>
       
-        <form id="form" class="grid grid-cols-1 md:grid-cols-2 my-16 px-5 gap-4">
-          <div class="flex items-center justify-center col-span-1 w-full">
-            <div class="relative w-full">
-              <input id="nombre" name="nombre" type="text" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="nombre" class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">NOMBRE</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 w-full">
-            <div class="relative w-full">
-              <input id="apellido" name="apellido" type="text" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="apellido" class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">APELLIDO</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 md:col-span-2 w-full">
-            <div class="relative w-full">
-              <input id="email" name="email" type="text" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="email" class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">E-MAIL</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 md:col-span-2 w-full">
-            <div class="relative w-full">
-              <input id="telefono" name="telefono" type="text" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="telefono" class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">TELÉFONO</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 md:col-span-2 w-full">
-            <div class="relative w-full">
-              <input id="empresa" name="empresa" type="text" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="empresa" class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">EMPRESA</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 md:col-span-2 w-full">
-            <div class="relative w-full">
-              <input id="categoria" name="categoria" type="text" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="categoria" class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">CATEGORÍA</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 md:col-span-2 w-full">
-            <div class="relative w-full">
-              <input id="detalles" name="detalles" type="text" class="border border-black py-10 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
-              <label for="detalles" class="absolute left-1 top-10 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white">DETALLES DEL PROYECTO</label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center col-span-1 md:col-span-2 w-full">
-            <div class="relative w-full">
-              <input id="archivos" name="archivos" type="file" class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full opacity-0 absolute inset-0" />
-              <p class="border border-black py-3 pl-2 bg-white cursor-pointer">Agregar archivo</p>
-            </div>
-          </div>
-          <p> ARCHIVOS: pdf, jpg, png, word, excel, rar, zip, etc.</p>
 
-          <div class="flex justify-center items-center col-span-1 md:col-span-2">
-            <button class="bg-black text-white flex justify-center items-center py-2 px-4 gap-2">
+      <section class="">
+        <<div class="w-full flex justify-center items-center relative">
+          <div class="w-full flex justify-center items-center text-black text-center">
+          
+          </div>
+      </div>
+      
+    <section class="w-full px-5  md:px-0   my-16 md:my-32 mx-auto container">
+      <h2 class="text-3xl tracking-widest text-center mb-10 espanol">COTIZA</h2>
+      <p class="text-center espanol">Entre mas información tengamos mejor  entenderemos lo que estas buscando</p>
+      <h2 class="text-3xl tracking-widest text-center mb-10 ingles hidden">QUOTE</h2>
+      <p class="text-center ingles hidden ">EN INGLES</p>
+
+      <div
+        <form id="form" class="grid grid-cols-2 my-16 px-5 md:px-0 gap-4 container mx-auto">
+          <div class="flex items-center justify-center col-span-1 w-full">
+              <div class="relative w-full">
+                  <input id="nombre" name="nombre" type="text"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="nombre"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">NOMBRE</label>
+                  <label for="nombre"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">NAME</label>
+              </div>
+          </div>
+          <div class="flex items-center justify-center col-span-1 w-full">
+              <div class="relative w-full">
+                  <input id="apellido" name="apellido" type="text"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="apellido"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">APELLIDO</label>
+                  <label for="apellido"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">LAST NAME</label>
+              </div>
+          </div>
+          <div class="flex items-center justify-center col-span-2 w-full md:col-span-1">
+              <div class="relative w-full">
+                  <input id="email" name="email" type="text"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="email"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">E-MAIL</label>
+                  <label for="email"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">EMAIL</label>
+              </div>
+          </div>
+          <div class="flex items-center justify-center col-span-2 w-full md:col-span-1">
+              <div class="relative w-full">
+                  <input id="telefono" name="telefono" type="text"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="telefono"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">TELÉFONO</label>
+                  <label for="telefono"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">PHONE</label>
+              </div>
+          </div>
+          <div class="flex items-center justify-center col-span-2 w-full md:col-span-1">
+              <div class="relative w-full">
+                  <input id="empresa" name="empresa" type="text"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="empresa"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">EMPRESA</label>
+                  <label for="empresa"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">COMPANY</label>
+              </div>
+          </div>
+          <div class="flex items-center justify-center col-span-2 w-full md:col-span-1">
+              <div class="relative w-full">
+                  <input id="categoria" name="categoria" type="text"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="categoria"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">CATEGORÍA</label>
+                  <label for="categoria"
+                      class="absolute left-1 top-3 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">CATEGORY</label>
+              </div>
+          </div>
+          <div class="flex items-center justify-center col-span-2 w-full ">
+              <div class="relative w-full">
+                  <input id="detalles" name="detalles" type="text"
+                      class="border border-black py-10 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+                  <label for="detalles"
+                      class="absolute left-1 top-10 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white espanol">DETALLES
+                      DEL PROYECTO</label>
+                  <label for="detalles"
+                      class="absolute left-1 top-10 cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all px-2 bg-white hidden ingles">PROJECT DETAILS</label>
+              </div>
+          </div>
+          <div class="flex justify-center col-span-2 flex-col gap-2 w-full">
+              <div class="relative w-full">
+                  <input id="archivos" name="archivos" type="file"
+                      class="border border-black py-3 pl-2 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit w-full" />
+              </div>
+              <p class="uppercase leading-3 espanol">ARCHIVOS: pdf, jpg, png, word, excel, rar, zip, etc.</p>
+              <p class="uppercase leading-3 ingles hidden">FILES: pdf, jpg, png, word, excel, rar, zip, etc.</p>
+  
+          </div>
+          <button class="bg-black text-white flex justify-center items-center py-4 w-full gap-2 col-span-2 espanol">
               COTIZA
               <img src="assets/img/arrow-btnF.svg" class="w-5" alt="">
-            </button>
-          </div>
-        </form>
+          </button>
+          <button class="bg-black text-white flex justify-center items-center py-4 w-full gap-2 col-span-2 ingles hidden">
+            QUOTE
+            <img src="assets/img/arrow-btnF.svg" class="w-5" alt="">
+        </button>
+          
+      </form>
+      
+  
+        
+  
       </section>
+
       
     
   </main>
 
   <footer class="bg-black text-white px-5 py-10">
-    <h2 class="">CONTACTO</h2>
-    <div class="flex gap-1 flex-col mt-3">
-      <a class="flex gap-2">
-        <img src="assets/img/icon-whats.svg" alt="WhatsApp">
-        <p>Ciudad de Mexico: 55 4360 9202</p>
-      </a>
-      <a class="flex gap-2">
-        <img src="assets/img/icon-whats.svg" alt="WhatsApp">
-        <p>Los Cabos: 55 8014 1086</p>
-      </a>
-      <a class="flex gap-2">
-        <img src="assets/img/icon-whats.svg" alt="WhatsApp">
-        <p>Puerto Escondido: 55 5404 7705</p>
-      </a>
-      <a class="mt-5" href="#">POLITICAS DE PRIVACIDAD</a>
-    </div>
-    <div class="pt-10 flex justify-between items-end">
-      <div class="flex gap-3">
-        <a href="#"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
-        <a href="#"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
-        <a href="#"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
+    <div class="container mx-auto">
+      <h2 class="espanol">CONTACTO</h2>
+      <h2 class="ingles hidden">CONTACT</h2>
+
+      <div class="flex gap-1 flex-col mt-3">
+        <a class="flex gap-2">
+          <a class="" href="https://api.whatsapp.com/send/?phone=525543609202" style="display: inline-flex; align-items: center; text-decoration: none;">
+            <img src="assets/img/icon-whats.svg" alt="WhatsApp" style="margin-right: 5px; width: 24px; height: 24px;">
+            Ciudad de México : 55 4360 9202
+        </a>
+        
+        
+               
+        </a>
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p class="espanol">Los Cabos: 55 8014 1086</p>
+          <p class="ingles hidden">Los Cabos: 55 8014 1086</p>
+        </a>
+        <a class="flex gap-2">
+          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
+          <p class="espanol">Puerto Escondido: 55 5404 7705</p>
+          <p class="ingles hidden">Puerto Escondido: 55 5404 7705</p>
+        </a>
+        <a class="mt-5 espanol" href="#">POLÍTICAS DE PRIVACIDAD</a>
+        <a class="mt-5 ingles hidden" href="#">PRIVACY POLICIES</a>
       </div>
-      <img class="h-8" src="assets/img/loco.PNG" alt="Logo">
+      <div class="pt-10 flex justify-between items-end">
+        <div class="flex gap-3">
+          <a href="#"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
+          <a href="#"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
+          <a href="#"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
+        </div>
+        <img class="h-8" src="assets/img/loco.PNG" alt="Logo">
+      </div>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper(".SliderIconos", {
-      slidesPerView: 3,
-      spaceBetween: 10,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 50,
-        },
-      },
-    });
-  </script>
+ 
 </body>
 
 </html>

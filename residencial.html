@@ -7,127 +7,166 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <title>Residencial</title>
+  <title>TOKALI</title>
 </head>
 
 <body>
-  <!-- MENÚ -->
-  <header class="fixed w-full bg-black z-30">
-    <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
-      <div class="w-[130px]  flex gap-4">
-        <div class="text-white flex items-center">
-          <span id="language-label" class="mr-2">ENGL</span>
-          <label for="toggle" class="inline-flex items-center cursor-pointer">
-            <input type="checkbox" id="toggle" class="sr-only" onchange="toggleLanguage()">
-            <div class="w-10 h-6 bg-white rounded-full p-1 relative">
-              <div class="dot w-4 h-4 bg-black rounded-full shadow-md transform transition-transform duration-300">
-              </div>
-            </div>
-          </label>
-        </div>
-        <style>
-          input:checked+label .dot {
-            transform: translateX(100%);
-          }
-        </style>
-        <script>
-          function toggleLanguage() {
-            const checkbox = document.getElementById('toggle');
-            const label = document.getElementById('language-label');
-            if (checkbox.checked) {
-              label.textContent = 'ESP';
-            } else {
-              label.textContent = 'ENGL';
-            }
-          }
-        </script>
+ <!-- MENÚ -->
+ <header class="fixed w-full bg-black z-30">
+  <nav class="container mx-auto w-full flex justify-between items-center py-3 px-2">
+    <div class="w-[130px] flex gap-4">
+      <div class="text-white flex items-center">
+        <span id="language-label" class="mr-2">ENGL</span>
+        <label for="toggle" class="inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggle" class="sr-only" aria-label="Toggle language" onchange="toggleLanguage()">
+          <div class="w-10 h-6 bg-white rounded-full p-1 relative">
+            <div id="bolita" class="dot w-4 h-4 bg-black rounded-full shadow-md transition-transform duration-300"></div>
+          </div>
+        </label>
       </div>
-      <a href="index.html" class="w-[130px] flex justify-center">
-        <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
-      </a>
-      <div id="AbrirMenuMovil" class="w-[130px] flex justify-end ">
-        <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
-      </div>
-    </nav>
-  </header>
-
-  <div id="contenedorMenuMovil"
-    class="fixed flex-col py-10 w-[85%] max-w-[500px] h-screen z-50 bg-white top-[74px] transition-right flex duration-300 right-[-100%]">
-    <img id="CerrarMenuMovil" class="w-5 absolute top-4 right-4 cursor-pointer" src="assets/img/icon-x.svg"
-      alt="Cerrar">
-    <a href="index.html" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">NOSOTROS</p>
-    </a>
-    <a href="#" id="AbrirSubMenu" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">PROYECTOS</p>
-      <img class="mr-5" src="assets/img/arrow-menu.svg" alt="">
-    </a>
-    <div  id="ContenedorSubmenu" class="mx-6 hidden">
-      <a href="hoteleria.html" class="py-5 flex items-center justify-between">
-        <p class="text-md font-bold ml-10 tracking-wide">HOTELERÍA</p>
-      </a>
-      <a href="residencial.html" class="py-5 flex items-center justify-between">
-        <p class="text-md font-bold ml-10 tracking-wide">RESIDENCIAL</p>
-      </a>
-      <a href="#" class="py-5 flex items-center justify-between">
-        <p class="text-md font-bold ml-10 tracking-wide">ESTRUCTURAL</p>
-      </a>
-      <a href="#" class="py-5 flex items-center justify-between">
-        <p class="text-md font-bold ml-10 tracking-wide">GLAMPING</p>
-      </a>
-
+      <script>
+        function cambiarIdioma(idioma) {
+          const elementosIngles = document.querySelectorAll('.ingles');
+          const elementosEspa = document.querySelectorAll('.espanol');
+      
+          if (idioma === 'en') {
+            elementosIngles.forEach(elemento => {
+              elemento.classList.remove('hidden');
+            });
+            elementosEspa.forEach(elemento => {
+              elemento.classList.add('hidden');
+            });
+          } else if (idioma === 'es') {
+            elementosEspa.forEach(elemento => {
+              elemento.classList.remove('hidden');
+            });
+            elementosIngles.forEach(elemento => {
+              elemento.classList.add('hidden');
+            });
+          }
+      
+          localStorage.setItem('idioma', idioma);
+        }
+      
+        const idiomaGuardado = localStorage.getItem('idioma') || 'es';
+        cambiarIdioma(idiomaGuardado);
+      
+        function toggleLanguage() {
+          const checkbox = document.getElementById('toggle');
+          const label = document.getElementById('language-label');
+          const dot = document.getElementById('bolita');
+          const idioma = checkbox.checked ? 'en' : 'es';
+          cambiarIdioma(idioma);
+          label.textContent = checkbox.checked ? 'ENGL' : 'ESP';
+          dot.style.transform = checkbox.checked ? 'translateX(15px)' : 'translateX(0px)';
+        }
+      </script>
+      
     </div>
-    <a href="reforestacion.html" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">REFORESTACIÓN</p>
+    <a href="index.html" class="w-[130px] flex justify-center">
+      <img class="w-[50px]" src="assets/img/logo-icon.png" alt="Logo">
     </a>
-    <a href="cotiza.html" class="py-5 flex items-center justify-between">
-      <p class="text-md font-bold ml-10 tracking-wide">COTIZA</p>
+    <div id="AbrirMenuMovil" class="w-[130px] flex justify-end ">
+      <img class="w-7 cursor-pointer" src="assets/img/burguer-icon.svg" alt="Menu">
+    </div>
+  </nav>
+</header>
+
+<div id="contenedorMenuMovil"
+  class="fixed flex-col py-10 w-[85%] max-w-[500px] h-screen z-50 bg-white top-[74px] transition-right flex duration-300 right-[-100%]">
+  <img id="CerrarMenuMovil" class="w-5 absolute top-4 right-4 cursor-pointer" src="assets/img/icon-x.svg"
+    alt="Cerrar">
+  <a href="index.html" class="py-5 flex items-center justify-between">
+    <p class="text-md font-bold ml-10 tracking-wide espanol">NOSOTROS</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">ABOUT US</p>
+
+  </a>
+  <a href="#" id="AbrirSubMenu" class="py-5 flex items-center justify-between">
+    <p class="text-md font-bold ml-10 tracking-wide espanol">PROYECTOS</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">PROYECT</p>
+
+    <img class="mr-5" src="assets/img/arrow-menu.svg" alt="">
+  </a>
+  <div  id="ContenedorSubmenu" class="mx-6 hidden">
+    <a href="hoteleria.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide espanol">HOTELERÍA</p>
+      <p class="text-md font-bold ml-10 tracking-wide ingles hidden">HOSPITALITY</p>
+
     </a>
+    <a href="residencial.html" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide espanol">RESIDENCIAL</p>
+      <p class="text-md font-bold ml-10 tracking-wide ingles hidden">RESIDENCTIAL</p>
+
+    </a>
+    <a href="#" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide espanol">ESTRUCTURAL</p>
+      <p class="text-md font-bold ml-10 tracking- ingles hidden">STRUCTURAL</p>
+
+    </a>
+    <a href="https://www.peregrinoglamp.mx/" class="py-5 flex items-center justify-between">
+      <p class="text-md font-bold ml-10 tracking-wide espanol">GLAMPING</p>
+      <p class="text-md font-bold ml-10 tracking-wide ingles hidden">GLAMPING</p>
+
+    </a>
+
   </div>
+  <a href="reforestacion.html" class="py-5 flex items-center justify-between">
+    <p class="text-md font-bold ml-10 tracking-wide espanol">REFORESTACIÓN</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">REFOTESTATION</p>
 
-  <script>
-    document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
-      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
-      contenedorMenuMovil.classList.add('right-0');
-      contenedorMenuMovil.classList.remove('right-[-100%]');
-    });
+  </a>
+  <a href="cotiza.html" class="py-5 flex items-center justify-between">
+    <p class="text-md font-bold ml-10 tracking-wide espanol">COTIZA</p>
+    <p class="text-md font-bold ml-10 tracking-wide ingles hidden">QUOTE NOW</p>
 
-    document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
-      var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
-      contenedorMenuMovil.classList.remove('right-0');
-      contenedorMenuMovil.classList.add('right-[-100%]');
-    });
+  </a>
+</div>
+
+<script>
+  document.getElementById('AbrirMenuMovil').addEventListener('click', function () {
+    var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+    contenedorMenuMovil.classList.add('right-0');
+    contenedorMenuMovil.classList.remove('right-[-100%]');
+  });
+
+  document.getElementById('CerrarMenuMovil').addEventListener('click', function () {
+    var contenedorMenuMovil = document.getElementById('contenedorMenuMovil');
+    contenedorMenuMovil.classList.remove('right-0');
+    contenedorMenuMovil.classList.add('right-[-100%]');
+  });
 
 
-   
+ 
 
-    let hola = 1;
+  let hola = 1;
 
 document.getElementById('AbrirSubMenu').addEventListener('click', function () {
-    if (hola === 1) {
-        var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
-        contenedorMenuMovil.classList.add('block');
-        contenedorMenuMovil.classList.remove('hidden');
-        hola = 0;
-    } else if (hola === 0) {
-        var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
-        contenedorMenuMovil.classList.remove('block');
-        contenedorMenuMovil.classList.add('hidden');
-        hola = 1;
-    }
+  if (hola === 1) {
+      var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+      contenedorMenuMovil.classList.add('block');
+      contenedorMenuMovil.classList.remove('hidden');
+      hola = 0;
+  } else if (hola === 0) {
+      var contenedorMenuMovil = document.getElementById('ContenedorSubmenu');
+      contenedorMenuMovil.classList.remove('block');
+      contenedorMenuMovil.classList.add('hidden');
+      hola = 1;
+  }
 });
 
-    
-  </script>
+  
+</script>
 
   <main>
     <!-- BANNER PRINCIPAL -->
     <section class="w-full flex justify-center items-center">
-      <div class="absolute w-full flex justify-center items-center text-white text-center flex-col gap-4">
-        <h2 class="text-3xl tracking-widest">RESIDENCIAL</h2>
+      <div class="absolute w-full flex justify-center items-center text-white text-center flex-col gap-4 z-10">
+        <h2 class="text-3xl tracking-widest espanol">RESIDENCIAL</h2>
+        <h2 class="text-3xl tracking-widest ingles hidden">RESIDENCTIAL</h2>
+
       </div>
-      <img class="w-full h-[95vh] object-cover md:hidden" src="assets/img/FOTO.png" alt="Banner móvil">
-      <img class="w-full hidden md:block object-cover" src="assets/img/FOTO.png" alt="Banner escritorio">
+      <img class="w-full h-[95vh] object-cover md:hidden brightness-75" src="assets/img/banner residencial.png" alt="Banner móvil">
+      <img class="w-[100%] h-[440px] hidden md:block object-cover brightness-75" src="assets/img/banner residencial.png" alt="Banner escritorio">
     </section>
 
  
@@ -135,18 +174,24 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
 
    
     <section class="w-full px-5  md:px-0   my-16 md:my-32 mx-auto container">
-      <h2 class="text-3xl tracking-widest text-center mb-10">NUESTROS PROYECTOS</h2>
-      <p class="text-center">LOREM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING ELIT, SED DIAM NONUMMY NIBH EUISMOD TINCIDUNT UT LAOREET DOLORE MAGNA ALIQUAM ERAT VOLUTPAT. UT WISI ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCI TATION.</p>
+      <h2 class="text-3xl tracking-widest text-center mb-10 espanol">NUESTROS PROYECTOS</h2>
+      <h2 class="text-3xl tracking-widest text-center mb-10 ingles hidden">PROJETS</h2>
+
+      <p class="text-center espanol"> Texto, Texto.</p>
+      <p class="text-center ingles hidden">text, text.</p>
+
 
       <div class="mx-auto container my-12">
 
         <div class="mt-7 border-black border gallery-toggle">
           <div class="flex justify-between px-5 py-3 items-center">
-            <p>VISTA CORAL</p>
+            <p class="espanol">VISTA CORAL</p>
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center">EN LA MARINA DE LA PAZ ESTE PROYECTO FUE DISEÑADO POR AIKANA CASA CON MADERAS RESISTENTES A LA INTEMPERIE, CLIMA EXTREMO Y SALITRE. SE USARON MATERIALES NATURALES Y MADERAS TROPICALES PARA ASEGURAR LA ADAPTABILIDAD Y DURABILIDAD DEL PROYECTO.</p>
+          <p class="hidden px-5 py-3 p text-center espanol2">EN LA MARINA DE LA PAZ ESTE PROYECTO FUE DISEÑADO POR AIKANA CASA CON MADERAS RESISTENTES A LA INTEMPERIE, CLIMA EXTREMO Y SALITRE. SE USARON MATERIALES NATURALES Y MADERAS TROPICALES PARA ASEGURAR LA ADAPTABILIDAD Y DURABILIDAD DEL PROYECTO.</p>
+          <p class=" px-5 py-3 p text-center ingles2 hidden">Texto en ingles.</p>
+
         </div>
     
         <div class="mt-7 border-black border gallery-toggle">
@@ -156,6 +201,7 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
           <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class=" px-5 py-3 p text-center ingles2 hidden">Texto en ingles.</p>
         </div>
 
 
@@ -165,7 +211,8 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="hidden px-5 py-3 p text-center espanol2" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class=" px-5 py-3 p text-center ingles2 hidden" >Texto en ingles.</p>        
         </div>
 
         <div class="mt-7 border-black border gallery-toggle">
@@ -174,7 +221,9 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="hidden py-3 p text-center espanol2" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="px-5 py-3 p text-center ingles2 hidden" >Texto en ingles.</p>
+
         </div>
 
         <div class="mt-7 border-black border gallery-toggle">
@@ -183,8 +232,9 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
-        </div>
+          <p class="hidden px-5 py-3 p text-center espanol2" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="px-5 py-3 p text-center ingles2 hidden" >Texto en ingles.</p>       
+         </div>
 
         <div class="mt-7 border-black border gallery-toggle">
           <div class="flex justify-between px-5 py-3 items-center">
@@ -192,8 +242,9 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
-        </div>
+          <p class="hidden px-5 py-3 p text-center espanol2" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="px-5 py-3 p text-center ingles2 hidden" >Texto en ingles.</p>
+                </div>
 
         <div class="mt-7 border-black border gallery-toggle">
           <div class="flex justify-between px-5 py-3 items-center">
@@ -201,8 +252,9 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
-        </div>
+          <p class="hidden px-5 py-3 p text-center espanol2" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="px-5 py-3 p text-center ingles2 hidden" >Texto en ingles.</p>
+                </div>
 
         <div class="mt-7 border-black border gallery-toggle">
           <div class="flex justify-between px-5 py-3 items-center">
@@ -210,77 +262,180 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
             <img src="assets/img/arrow-b.svg" alt="">
             <img class="hidden" src="assets/img/arrow-m.svg" alt="">
           </div>
-          <p class="hidden px-5 py-3 p text-center" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="hidden px-5 py-3 p text-center espanol2" >LLEVAMOS A CABO EL DISEÑO DE FACILEBOREIRO PARA ESTE ESPACIO SOCIAL, ÍCONO DE LA CDMX. FABRICACIÓN CON TEXTILES, MADERA, HERRERÍA Y PIEDRA.</p>
+          <p class="px-5 py-3 p text-center ingles2 hidden" >Texto en ingles.</p>
         </div>
     
       </div>
     
       <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/cabecera.jpg" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral.JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral 2.JPG" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral 3.JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/ vista coral 4.JPG" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral.JPG" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral2.JPG" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral4.JPG" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Vista Coral/vista coral5.JPG" alt="">
       </div>
+        </div>
     
       <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/PJ Rubén Darío/OSF.14277 - Rubén Darío 225-14 (1) (1).jpg" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/PJ Rubén Darío/OSF.14277 - Rubén Darío 225-17 (1) (1).jpg" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/PJ Rubén Darío/OSF.14277 - Rubén Darío 225-2 (3).jpg" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/PJ Rubén Darío/OSF.14277 - Rubén Darío 225-20 (3) (1).jpg" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/PJ Rubén Darío/OSF.14277 - Rubén Darío 225-37 (2).jpg" alt="">
+      </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/PJ Rubén Darío/OSF.14277 - Rubén Darío 225-4 (1).jpg" alt="">
+        </div>
       </div>
 
       <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 1.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 2.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 3.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 4.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 5.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 3.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Rubén Darío/Ruben dario 6.png" alt="">
+        </div>
+
       </div>
       
       <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco1.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco2.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco3.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco4.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco5.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/acapulco6.png" alt="">
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+
+      </div>
+      <div class="w-full grid grid-cols-1 gap-5 md:grid-cols-2 gallery-content hidden">
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/La Martine/cha10 (1) (1).JPG" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/La Martine/cha14 (1).JPG" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/La Martine/cha15 (1) (1).JPG" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/La Martine/cha16 (1) (1).JPG" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/La Martine/cha19 (1) (1).JPG" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/La Martine/cha21 (1) (1).JPG" alt="">
+        </div>
+      </div>
+      
+      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <div class="w-[100%] h-[500px] overflow-hidden">
+          <img class="w-full h-full object-cover" src="assets/img/Residencial/Be Grand/bg4 (1) (1).JPG" alt="">
+      </div>
+      <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full h-full object-cover" src="assets/img/Residencial/Be Grand/bg6 (1).JPG" alt="">
+      </div>
+      <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full h-full object-cover" src="assets/img/Residencial/Be Grand/IMG_1961 (2).JPG" alt="">
+      </div>
+      <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full h-full object-cover" src="assets/img/Residencial/Be Grand/IMG_1970 (1).JPG" alt="">
+      </div>
+      <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full h-full object-cover" src="assets/img/Residencial/Be Grand/IMG_1987 (1).JPG" alt="">
+      </div>
+      <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full h-full object-cover" src="assets/img/Residencial/Be Grand/IMG_2009 (1) (1).JPG" alt="">
+      </div>
+
       </div>
       <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/La Martine/cha10 (1) (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/La Martine/cha14 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/La Martine/cha15 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="aassets/img/Residencial/La Martine/cha16 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/La Martine/cha17 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/La Martine/cha18 (1).JPG" alt="">
-      </div>
-      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Be Grand/bg4 (1) (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Be Grand/bg6 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Be Grand/IMG_1961 (2).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Be Grand/IMG_1970 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Be Grand/IMG_1987 (1).JPG" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/Be Grand/IMG_2009 (1) (1).JPG" alt="">
-      </div>
-      <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/CabodelaSol/cabodelasol 1.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/CabodelaSol/cabodelasol 2.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/CabodelaSol/cabodelasol 3.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/CabodelaSol/cabodelasol 4.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/CabodelaSol/cabodelasol 5.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
         <img class="w-full col-span-2 md:col-span-1" src="assets/img/Residencial/CabodelaSol/cabodelasol 6.png" alt="">
+        </div>
       </div>
+
+
       <div class="w-full grid-cols-1 gap-5 md:grid-cols-2 gallery-content  hidden">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco1.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco2.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco3.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco4.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco5.png" alt="">
-        <img class="w-full col-span-2 md:col-span-1" src="assets/img/polanco6.png" alt="">
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
+        <div class="w-[100%] h-[500px] overflow-hidden">
+        <img class="w-full col-span-2 md:col-span-1" src="assets/img/.png" alt="">
+        </div>
       </div>
     
     
@@ -348,52 +503,45 @@ document.getElementById('AbrirSubMenu').addEventListener('click', function () {
 
   <footer class="bg-black text-white px-5 py-10">
     <div class="container mx-auto">
-      <h2 class="">CONTACTO</h2>
+      <h2 class="espanol">CONTACTO</h2>
+      <h2 class="ingles hidden">CONTACT</h2>
+
       <div class="flex gap-1 flex-col mt-3">
         <a class="flex gap-2">
-          <img src="assets/img/icon-whats.svg" alt="WhatsApp">
-          <p>Ciudad de México: 55 4360 9202</p>
+          <a class="" href="https://api.whatsapp.com/send/?phone=525543609202" style="display: inline-flex; align-items: center; text-decoration: none;">
+            <img src="assets/img/icon-whats.svg" alt="WhatsApp" style="margin-right: 5px; width: 24px; height: 24px;">
+            Ciudad de México : 55 4360 9202
+        </a>
+        
+        
+               
         </a>
         <a class="flex gap-2">
           <img src="assets/img/icon-whats.svg" alt="WhatsApp">
-          <p>Los Cabos: 55 8014 1086</p>
+          <p class="espanol">Los Cabos: 55 8014 1086</p>
+          <p class="ingles hidden">Los Cabos: 55 8014 1086</p>
         </a>
         <a class="flex gap-2">
           <img src="assets/img/icon-whats.svg" alt="WhatsApp">
-          <p>Puerto Escondido: 55 5404 7705</p>
+          <p class="espanol">Puerto Escondido: 55 5404 7705</p>
+          <p class="ingles hidden">Puerto Escondido: 55 5404 7705</p>
         </a>
-        <a class="mt-5" href="#">POLÍTICAS DE PRIVACIDAD</a>
+        <a class="mt-5 espanol" href="#">POLÍTICAS DE PRIVACIDAD</a>
+        <a class="mt-5 ingles hidden" href="#">PRIVACY POLICIES</a>
       </div>
       <div class="pt-10 flex justify-between items-end">
         <div class="flex gap-3">
-          <a href="#"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
-          <a href="#"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
-          <a href="#"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
+          <a href="https://www.facebook.com/profile.php?id=100084010698731"><img class="w-6" src="assets/img/icon-facebook.svg" alt="Facebook"></a>
+          <a href="https://www.instagram.com/tokali.mx/"><img class="w-6" src="assets/img/icon-insta.svg" alt="Instagram"></a>
+          <a href="https://api.whatsapp.com/send/?phone=525543609202"><img class="w-6" src="assets/img/icon-whats.svg" alt="WhatsApp"></a>
         </div>
         <img class="h-8" src="assets/img/loco.PNG" alt="Logo">
       </div>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    var swiper = new Swiper(".slidemin", {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
-    var swiper2 = new Swiper(".sliderGal", {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      thumbs: {
-        swiper: swiper,
-      },
-    });
-  </script>
+ 
+  
+ 
 </body>
 
 </html>
